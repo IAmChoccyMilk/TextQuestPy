@@ -9,6 +9,7 @@ class Player:
     playerClass = None
     armorClass = None
 
+    # Sets the JSON structure for the character files
     playerData = {
     "Player Name": playerName,
     "Class": playerClass,
@@ -20,8 +21,6 @@ class Player:
     def CreateCharacter(self):
         playerName = input().title()
         
-
-
 
 playerClasses = {
     
