@@ -1,5 +1,5 @@
 import random
-
+'''
 gameStarted = False
 
 def MakeMenuOptions():
@@ -47,4 +47,4 @@ while True:
     # Makes menu screen
     MakeMenu()
     
-                
+                '''

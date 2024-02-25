@@ -19,7 +19,7 @@ class Player:
     
     def CreateCharacter(self):
         playerName = input().title()
-        playerClass = 
+        
 
 
 
