@@ -2,12 +2,13 @@ import random
 '''
 gameStarted = False
 
+# Prints menu options
 def MakeMenuOptions():
     print("(S)tart new game\n")
     print("(L)oad game\n")
-    print("(C)reate new character\n\n\n")
+    print("(C)reate new character\n\n")
     
-
+# Makes the menu
 def MakeMenu():
     
     MakeMenuOptions()
@@ -19,6 +20,7 @@ def MakeMenu():
     match menuInput.title():
         case "S":
             StartGame()
+            print("YOU DID IT!")
             inputValid = True
         case "L":
             print("Sorry, this feature is still a work in progress!")
