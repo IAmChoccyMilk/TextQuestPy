@@ -1,14 +1,29 @@
 import json
+import cmd
+import textwrap
+import sys
+import os
+import time
+import random
 
+##### Player stuff ######
 class Player:
-    
+    def ___init___(self):
+        self.name = ''
+        self.hp = 0
+        self.mp = 0
+        self.level = 0
+        self.player_class = ''
+        self.status_effects = []
+        
     # Attributes of the player
-    playerName = None
-    playerLevel = None
-    playerHP = None
-    playerClass = None
-    armorClass = None
+    # playerName = None
+    # playerLevel = None
+    # playerHP = None
+    # playerClass = None
+    # armorClass = None
 
+    '''
     # Sets the JSON structure for the character files
     playerData = {
     "Player Name": playerName,
@@ -17,16 +32,7 @@ class Player:
     "Armor Class": armorClass,
     "Health Points": playerHP,
     }
-    
-    def CreateCharacter(self):
-        playerName = input().title()
-        
+   
 
-playerClasses = {
-    
-}
-
-
-    
-'''with open('player.json,' 'w') as f:
+    with open('player.json,' 'w') as f:
     json.dump(playerData, f)'''
