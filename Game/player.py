@@ -8,13 +8,18 @@ import random
 
 ##### Player stuff ######
 class Player:
-    def ___init___(self):
+    def __init__(self):
         self.name = ''
         self.hp = 0
         self.mp = 0
+        self.strength = 0
         self.level = 0
         self.player_class = ''
         self.status_effects = []
+        self.player_location = 'a1'
+        self.game_over = False
+        self.backpack = []
+        self.equipped_items = []
         
     # Attributes of the player
     # playerName = None

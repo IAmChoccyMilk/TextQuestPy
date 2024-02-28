@@ -4,7 +4,7 @@ import sys
 import os
 import time
 import random
-from Game.player import Player
+from player import *
 '''
 a1 a2...  #PLAYER STARTS AT a1
 ######### 

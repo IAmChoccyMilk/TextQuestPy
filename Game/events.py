@@ -1,2 +1,5 @@
 class Events():
-    pass
+    def __init__(self):
+        self.name = ''
+        self.type = []
+        
