@@ -58,6 +58,7 @@ def MakeMenu():
             inputValid = False
         case "H":
             HelpMenu()
+            inputValid = True
         case "Q":
             sys.exit()
         case _:
@@ -73,6 +74,7 @@ def HelpMenu():
     print("                               - Use up, down, left, right to move                                 ")
     print("                               - Type your commands to execute actions                                     ")
     print("                               - Use 'look' to inspect something                           \n")
+    
 # Opens menu of existing characters and allows user to select one of them to continue
 def LoadGame():
     pass
@@ -89,6 +91,7 @@ def print_location():
     print('#' + zoneMap[myPlayer.player_location] [DESCRIPTION] + '#')
     print('\n' + ('#' * (4 + len(myPlayer.player_location))))
     
+    # Handles all actions and commands
 def prompt():
     print("===================================")
     print("What would you like to do?")
@@ -104,6 +107,7 @@ def prompt():
     elif action.lower() in ['examine', 'inspect', 'interact', 'look']:
         player_examine(action.lower())
         
+    # Defines the move action
 def player_move(myAction):
     ask = "Where would you like to go?"
     destination = input(ask)
@@ -120,6 +124,7 @@ def player_move(myAction):
         destination = zoneMap[myPlayer.player_location] [LEFT]
         movement_handler(destination)
     
+    # Actually moves the player
 def movement_handler(destination):
     if myPlayer.player_location == '':
         myPlayer.player_location = 'a1'
@@ -129,7 +134,7 @@ def movement_handler(destination):
         print_location()
 
     
-    
+    # Defines the examine action
 def player_examine(action):
     if zoneMap[myPlayer.player_location] [SOLVED] == True:
         print("You have already explored this zone.")
@@ -158,8 +163,12 @@ def setup_game():
     myPlayer.name = player_name
     ### Class collection
     question2 = "What is your characters class?\n"
+    for character in question2:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.02)
     question2continued = "(The current choices are: barbarian, wizard, and rogue)\n"
-    for character in question2 and question2continued:
+    for character in question2continued:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.01)
@@ -199,19 +208,17 @@ def setup_game():
     for character in speech1:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.04)
+        time.sleep(0.06)
     for character in speech2:
         sys.stdout.write(character)
         sys.stdout.flush()
-        time.sleep(0.02)
+        time.sleep(0.04)
     
     os.system('cls')
-    print("#########################")
-    print("     Let's start now!    ")
-    print("#########################")
+    print("#############################")
+    print("     Welcome to Alavaria!    ")
+    print("#############################")
     main_game_loop()
-    
-        
-        
+          
         
 MakeMenu()

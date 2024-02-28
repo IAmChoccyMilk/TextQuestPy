@@ -12,6 +12,7 @@ class Player:
         self.name = ''
         self.hp = 0
         self.mp = 0
+        self.xp = 0
         self.strength = 0
         self.level = 0
         self.player_class = ''
@@ -20,6 +21,8 @@ class Player:
         self.game_over = False
         self.backpack = []
         self.equipped_items = []
+        self.gold = 0
+
         
     # Attributes of the player
     # playerName = None
