@@ -31,12 +31,12 @@ class Weapon(Items):
 
 class Dagger(Weapon):
     def __init__(self):
-        super().__init__(name='Dagger', 
+        super().__init__(name='Dagger',
                          description='"Like a short sword, but... short...er."',
                          value=random.randint(4,10),
                          rarity='common',
                          damage_dice=random.randint(1, 6),
-                         hit_dice='1d6'
+                         hit_dice='1d6',
                          type_of_item='Piercing'
                         )
         
