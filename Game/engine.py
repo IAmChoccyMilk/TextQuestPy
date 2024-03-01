@@ -4,17 +4,83 @@ import sys
 import os
 import time
 import random
-from map import *
-from player import *
+import realm
+from pathlib import Path
+import pickle
+# from map import *
+from player import Player
 
 
-myPlayer = Player()
+#myPlayer = Player()
 
-screen_width = 100
+#screen_width = 100
 
-gameStarted = False
+#gameStarted = False
 
 # Prints menu options
+
+def start_game(saved_world=None, saved_player=None):
+    if saved_world and saved_player:
+        realm._world = saved_world
+        player = saved_player
+    else:
+        realm.load_rooms()
+        player = Player()
+        main_game_loop(player)
+        
+def main_game_loop(player):
+    room = realm.room_exists(player.location_x, player.location_y)
+    room_intro_text = room.intro_text()
+    for character in room_intro_text:
+        sys.stdout.write(character)
+        sys.stdout.flush()
+        time.sleep(0.04)
+    while player.is_alive() and not player.game_over:
+        room = realm.room_exists(player.location_x, player.location_y)
+        room.modify_player(player)
+        # Check again incase the room has changed the players state
+        if player.is_alive() and not player.game_over:
+            choose_action = "What would you like to do?"
+            for character in choose_action:
+                sys.stdout.write(character)
+                sys.stdout.flush()
+                time.sleep(0.04)
+            available_actions = room.available_actions()
+            for action in available_actions:
+                print(action)
+            action_input = input('> ')
+            for action in available_actions:
+                if action_input == action.hotkey:
+                    player.do_action(action, **action.kwargs)
+                    break
+                
+def check_for_save():
+    if Path("saved_player.p").is_file() and Path("saved_world.p").is_file():
+        saved_world = pickle.load(open("saved_world.p", "rb"))
+        saved_player = pickle.load(open("saved_player.p", "rb"))
+        save_exists = True
+    else:
+        save_exists = False
+        
+    if save_exists:
+        valid_input = False
+        while not valid_input:
+            load = input("Saved game found! Do you want to load the game? y/n ")
+            if load in ['Y', 'y']:
+                start_game(saved_world, saved_player)
+                valid_input = True
+            elif load in ['N', 'n']:
+                start_game()
+                valid_input = True
+            else:
+                print("Invalid choice.")
+                
+    else:
+        start_game()
+
+if __name__ == "__main__":
+    check_for_save()
+"""
 def MakeMenuOptions():
     os.system('cls')
     print("#################################################################################")
@@ -66,8 +132,8 @@ def MakeMenu():
             inputValid = False
 
 # Starts game.
-def StartGame():
-    setup_game()
+#def StartGame():
+#    setup_game()
 
 def HelpMenu():
     print("                          Help:                                                               ")
@@ -82,8 +148,8 @@ def LoadGame():
 # Allows the user to create a character without starting a new game afterward
 def CreateCharacter():
     pass
- 
-
+ """
+"""
 ##### Game Interactivity #####
 def print_location():
     print('\n' + ('#' * (4 + len(myPlayer.player_location))))
@@ -123,16 +189,22 @@ def player_move(myAction):
     elif destination in ['west', 'left', 'w']:
         destination = zoneMap[myPlayer.player_location] [LEFT]
         movement_handler(destination)
+    elif destination in ['travel']:
+        destination = travelMap[myPlayer.player_location] [TRAVEL]
+        player_travel(destination)
     
-    # Actually moves the player
+    # Actually mov es the player
 def movement_handler(destination):
-    if myPlayer.player_location == '':
-        myPlayer.player_location = 'a1'
-    else:
         print("\n" + "You have arrived at " + destination)
         myPlayer.player_location = destination
         print_location()
 
+def player_travel(destination):
+    #mapKey = [k for k in zoneMap.items()]
+    print("\n" + "You adventured out and eventually you come across " + destination)
+    myPlayer.player_location = destination
+    print_location()
+    
     
     # Defines the examine action
 def player_examine(action):
@@ -143,10 +215,12 @@ def player_examine(action):
         
 
 
+
+
 ##### DEFINE MAIN GAMELOOP #####
 def main_game_loop():
     while myPlayer.game_over == False:
-        prompt()
+        # prompt()
     # Here handle if puzzles have been solved/Bosses defeated/explored everything/etc.
     
 
@@ -220,5 +294,7 @@ def setup_game():
     print("#############################")
     main_game_loop()
           
-        
+   
 MakeMenu()
+
+"""

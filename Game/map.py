@@ -5,6 +5,7 @@ import os
 import time
 import random
 from player import *
+
 '''
 a1 a2...  #PLAYER STARTS AT a1
 ######### 
@@ -14,6 +15,7 @@ a1 a2...  #PLAYER STARTS AT a1
 |_|_|_|_| d4...
 #########
 '''
+
 ZONENAME = ''
 DESCRIPTION = 'description'
 EXAMINATION = 'examine'
@@ -22,6 +24,7 @@ UP = 'up', 'north', 'n'
 DOWN = 'down', 'south', 's'
 LEFT = 'left', 'west', 'w'
 RIGHT = 'right', 'east', 'e'
+TRAVEL = 'travel', 'adventure', 'roam'
 
 solved_places = {'a1': False, 'a2': False, 'a3': False, 'a4': False,
                  'b1': False, 'b2': False, 'b3': False, 'b4': False,
@@ -37,7 +40,8 @@ zoneMap = {
         UP: '',
         DOWN: 'b1',
         LEFT: '',
-        RIGHT: 'a2'
+        RIGHT: 'a2',
+        
     },
     'a2': {
         ZONENAME: "Alvarian Square",
@@ -89,6 +93,17 @@ zoneMap = {
         LEFT: 'b1',
         RIGHT: '' # will be b3
     },
+    
+}
+
+zoneMapSorted = sorted(zoneMap)
+myKey = random.choice(list(zoneMapSorted))
+
+travelMap = {
+    
+    'travel': {
+        TRAVEL: zoneMap[myKey]
+    }
     
 }
 
