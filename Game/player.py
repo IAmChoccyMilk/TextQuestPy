@@ -22,7 +22,13 @@ class Player:
         self.backpack = []
         self.equipped_armor = []
         self.equipped_weapon = []
+        self.is_dead = False
 
+    def is_alive(self):
+        if Player().hp > 0:
+            Player().is_dead = True
+            
+    
     def attack(self):
         pass
     
