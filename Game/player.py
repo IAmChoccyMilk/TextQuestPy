@@ -5,7 +5,7 @@ import sys
 import os
 import time
 import random
-
+import items
 ##### Player stuff ######
 class Player:
     def __init__(self):
@@ -20,10 +20,12 @@ class Player:
         self.player_location = 'a1'
         self.game_over = False
         self.backpack = []
-        self.equipped_items = []
-        self.gold = 0
+        self.equipped_armor = []
+        self.equipped_weapon = []
 
-        
+    def attack(self):
+        pass
+    
     # Attributes of the player
     # playerName = None
     # playerLevel = None
